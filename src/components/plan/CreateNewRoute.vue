@@ -14,12 +14,14 @@ import Buttons from "./item/Buttons.vue";
   </div>
 
   <hr />
-  <section>
-    <Map></Map>
-  </section>
+  <div class="flex-container">
+    <section class="flex-item map-section">
+      <Map></Map>
+    </section>
 
-  <div>
-    <EditPlan></EditPlan>
+    <section class="flex-item editplan-section">
+      <EditPlan></EditPlan>
+    </section>
   </div>
 
   <div>
@@ -28,22 +30,14 @@ import Buttons from "./item/Buttons.vue";
 </template>
 
 <style scoped>
-/* 거리표시 팝업*/
-.mPop {
-  border: 1px;
-  background-color: #fff;
-  font-size: 12px;
-  border-color: #ff0000;
-  border-style: solid;
-  text-align: center;
+.flex-container {
+  display: flex;
 }
-/*공통사용 클래스*/
-.mPopStyle {
-  border: 1px;
-  background-color: #fff;
-  font-size: 12px;
-  border-color: #ff0000;
-  border-style: solid;
-  text-align: left;
+.map-section {
+  width: 70%;
+}
+
+.editplan-section {
+  width: 30%;
 }
 </style>

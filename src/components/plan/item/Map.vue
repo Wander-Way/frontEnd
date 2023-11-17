@@ -1,6 +1,8 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import axios from "axios";
+import { planStore } from "@/stores/counter";
+
 const searchKeyword = ref("대전 갈마동 카페");
 const map = ref(null);
 const marker = ref(null);
@@ -8,6 +10,17 @@ const markerArr = ref([]);
 const labelArr = ref([]);
 const resultpoisData = ref([]);
 const detailInfo = ref([]);
+
+//pinia로관리
+const temp = planStore();
+
+//클릭이벤트
+const addSelectedPlace = (place) => {
+  console.log("place", place);
+  console.log("place name", place.name);
+  temp.addSelectedPlace(place);
+};
+
 onMounted(() => {
   initTmap();
 });
@@ -16,7 +29,7 @@ onMounted(() => {
 const initTmap = () => {
   map.value = new Tmapv2.Map("map_div", {
     center: new Tmapv2.LatLng(37.5652045, 126.98702028),
-    width: "75%",
+    width: "100%",
     height: "400px",
     zoom: 17,
     zoomControl: true,
@@ -123,60 +136,75 @@ const getInfoPlace = async () => {
 </script>
 
 <template>
-  <!-- <div ref="tmap"></div> -->
-  <div>
-    <div class="search-container">
-      <input type="text" class="text_custom" v-model="searchKeyword" />
-      <button id="btn_select" @click="getMapResult">적용하기</button>
-    </div>
-    <div>
-      <!--검색결과 영역 시작-->
+  <section class="main-container">
+    <!-- 왼쪽섹션 : 검색창, 지도, 검색결과-->
+    <div class="left-section">
       <div class="map-container">
-        <!-- 맵 여깄어용-->
-        <div id="map_div" class="map_wrap"></div>
-        <!-- 상세정보 여깄어용-->
+        <div class="search-container">
+          <input type="text" class="text_custom" v-model="searchKeyword" />
+          <button id="btn_select" @click="getMapResult">적용하기</button>
+        </div>
 
+        <!-- 맵 -->
+        <div id="map_div" class="map_wrap"></div>
+
+        <!-- 카드 그룹 -->
         <div class="cards-container">
           <div v-for="place in detailInfo" class="card">
             <div class="card-content">
-              <div>name : {{ place.name }}</div>
-              <div>Addr : {{ place.bldAddr }}</div>
-              <div>tel : {{ place.tel }}</div>
-              <div>info : {{ place.desc }}</div>
+              <div>name: {{ place.name }}</div>
+              <div>Addr: {{ place.bldAddr }}</div>
+              <div>tel: {{ place.tel }}</div>
+              <button @click="addSelectedPlace(place)">[+]</button>
             </div>
           </div>
         </div>
       </div>
-      <!--검색결과 영역 끝-->
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped>
+.main-container {
+  display: flex;
+  justify-content: space-between;
+}
+.left-section {
+  width: 100%; /* 왼쪽 섹션의 너비를 조절 */
+}
+
+.right-section {
+  width: 30%; /* 오른쪽 섹션의 너비를 조절 */
+}
 .map-container {
   display: flex;
-  position: relative;
+  flex-direction: column;
 }
+
 .map_wrap {
-  flex: 1;
-  width: 100%; /* 혹시 모를 경우 100%로 설정 */
   height: 400px; /* 맵의 높이 설정 */
-  /* 추가적인 스타일링이 필요한 경우 여기에 추가하세요. */
+}
+
+.cards-container {
+  display: flex;
+  width: 100%;
+  overflow-x: auto; /* 카드가 넘칠 경우 스크롤 표시 */
+  white-space: nowrap; /* 가로 스크롤을 위한 줄 바꿈 방지 */
 }
 
 .card {
-  flex: 0 0 auto;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin: 10px;
+  margin-right: 10px; /* 카드 간 간격 설정 */
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   transition: transform 0.2s;
-  width: 30%;
+  max-width: 300px;
+}
+
+.card:last-child {
+  margin-right: 0; /* 마지막 카드는 간격을 없애기 위해 설정 */
 }
 
 .card:hover {
@@ -184,17 +212,11 @@ const getInfoPlace = async () => {
 }
 
 .card-content {
-  /* 추가적인 스타일링이 필요한 경우 여기에 추가하세요. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.cards-container {
-  display: flex;
-  overflow-x: auto; /* 카드가 넘칠 경우 스크롤 표시 */
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px; /* 여백 설정 */
-}
+
 .search-container {
   display: flex;
   margin-bottom: 20px;
