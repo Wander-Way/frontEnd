@@ -9,6 +9,21 @@ const router = createRouter({
       component: () => import("@/components/main/Main.vue"),
     },
     {
+      path: "/mypage",
+      name: "myPage",
+      component: () => import("@/components/mypage/MyPage.vue"),
+    },
+    {
+      path: "/hotplace",
+      name: "hotPlace",
+      component: () => import("@/components/hotplace/HotPlace.vue"),
+    },
+    {
+      path: "/hotplace/board",
+      name: "hotPlaceBoard",
+      component: () => import("@/components/hotplace/HotPlaceBoard.vue"),
+    },
+    {
       path: "/plan",
       name: "planYourRoute",
       component: () => import("@/components/plan/PlanYourRoute.vue"),
