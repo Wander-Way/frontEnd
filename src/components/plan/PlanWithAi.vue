@@ -1,6 +1,5 @@
 <script setup>
 import Map from "./item/map.vue";
-import SearchBar from "./item/searchBar.vue";
 import EditPlan from "./item/EditPlan.vue";
 import Buttons from "./item/Buttons.vue";
 </script>

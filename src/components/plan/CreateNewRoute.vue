@@ -1,6 +1,5 @@
 <script setup>
 import Map from "./item/map.vue";
-import SearchBar from "./item/searchBar.vue";
 import EditPlan from "./item/EditPlan.vue";
 import Buttons from "./item/Buttons.vue";
 </script>
@@ -14,8 +13,8 @@ import Buttons from "./item/Buttons.vue";
     </pre>
   </div>
 
+  <hr />
   <section>
-    <SearchBar></SearchBar>
     <Map></Map>
   </section>
 
@@ -28,4 +27,23 @@ import Buttons from "./item/Buttons.vue";
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+/* 거리표시 팝업*/
+.mPop {
+  border: 1px;
+  background-color: #fff;
+  font-size: 12px;
+  border-color: #ff0000;
+  border-style: solid;
+  text-align: center;
+}
+/*공통사용 클래스*/
+.mPopStyle {
+  border: 1px;
+  background-color: #fff;
+  font-size: 12px;
+  border-color: #ff0000;
+  border-style: solid;
+  text-align: left;
+}
+</style>
