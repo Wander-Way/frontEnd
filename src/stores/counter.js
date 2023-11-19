@@ -1,7 +1,6 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 
-<<<<<<< HEAD
 export const planStore = defineStore("planStore", () => {
   const selectedPlaces = ref([]);
   const addSelectedPlace = (place) => {
@@ -12,14 +11,4 @@ export const planStore = defineStore("planStore", () => {
   };
 
   return { selectedPlaces, addSelectedPlace };
-=======
-export const useCounterStore = defineStore("counter", () => {
-  const count = ref(0);
-  const doubleCount = computed(() => count.value * 2);
-  function increment() {
-    count.value++;
-  }
-
-  return { count, doubleCount, increment };
->>>>>>> d771188718b0c89a9754cc0bfbdb949a2e517297
 });

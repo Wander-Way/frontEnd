@@ -15,6 +15,30 @@ const router = createRouter({
     },
     {
       path: "/hotplace",
+      name: "hotplace",
+      component: () => import("@/views/HotplaceView.vue"),
+      
+      redirect: "/hotplace/boardhome",
+      children: [
+        {
+          path: "boardhome",
+          name: "hotplaceBoardHome",
+          component: () => import("@/views/HotplaceView/HotplaceHome.vue"),
+        },
+        {
+          path: "list",
+          name: "hotplaceBoardList",
+          component: () => import("@/views/HotplaceView/HotplaceBoardList.vue"),
+        },
+        {
+          name: "article-detail",
+          path: "article-detail/:id",
+          component: () => import("@/views/HotplaceView/HotplaceBoardDetail.vue"),
+        },
+      ],
+    },
+    /*{
+      path: "/hotplace",
       name: "hotPlace",
       component: () => import("@/components/hotplace/HotPlace.vue"),
     },
@@ -22,7 +46,7 @@ const router = createRouter({
       path: "/hotplace/board",
       name: "hotPlaceBoard",
       component: () => import("@/components/hotplace/HotPlaceBoard.vue"),
-    },
+    },*/
     {
       path: "/plan",
       name: "planYourRoute",
