@@ -1,39 +1,37 @@
 
 <script setup>
 import { computed } from "vue";
-import { useStore } from "../../stores/index.js";
 import { storeToRefs } from "pinia";
 import { RouterLink, useRouter } from "vue-router";
 import { onMounted } from "vue";
 import axios from "axios";
 import { ref } from "vue";
+import { useBoardStore } from "../../stores/board";
 
-const store = useStore();
 
+const boardStore = useBoardStore();
+
+const articles = computed(() => boardStore.articles);
 const router = useRouter();
+
+const params = ref({
+  key: "", //조건 검색 시 컬럼명
+  word: "", //해당 컬럼에 일치하는 데이터
+  pgno: 1, //조회할 페이지 번호
+  spp: 20, //한번에 얻어올 게시글 개수
+  city: "",//검색할 도시
+});
+
+
+boardStore.getArticles(params.value);
+
 
 //이건 수정 가능
 //const { selectedOption } = storeToRefs(store);
 
 //이건 수정 불가
 const selectedOption = computed(() => {
-  return store.selectedOption;
-});
-const articles = ref([]);
-onMounted(async () => {
-  try {
-    const response = await axios.get("http://localhost:8080/hotplace/board", {
-      params: {
-        pgno: 1,
-        spp: 20,
-        place: selectedOption.value,
-      },
-    });
-    //console.log(response.data);
-    articles.value = response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  return boardStore.selectedOption;
 });
 
 
@@ -52,8 +50,6 @@ const moveDetail = (id) => {
   
       Selected: {{ selectedOption }}
   
-
-      
     <table>
       <tr>
         <th>글 번호</th>

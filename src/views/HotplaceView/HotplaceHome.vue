@@ -1,11 +1,11 @@
 <script setup>
-import { useStore } from "../../stores/index.js";
+import { useBoardStore } from "../../stores/board";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const store = useStore();
+const store = useBoardStore();
 
 const { selectedOption } = storeToRefs(store);
 
