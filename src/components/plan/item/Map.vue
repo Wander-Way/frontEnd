@@ -12,13 +12,11 @@ const resultpoisData = ref([]);
 const detailInfo = ref([]);
 
 //pinia로관리
-const temp = planStore();
+const store = planStore();
 
 //클릭이벤트
 const addSelectedPlace = (place) => {
-  console.log("place", place);
-  console.log("place name", place.name);
-  temp.addSelectedPlace(place);
+  store.addSelectedPlace(place);
 };
 
 onMounted(() => {
@@ -53,7 +51,6 @@ const getMapResult = async () => {
       count: 10, // 가져올 갯수
     },
   });
-  console.log("받아온 정보 : ", resp.data);
   resultpoisData.value = resp.data.searchPoiInfo.pois.poi;
   // 2. 기존 마커, 팝업 제거
   if (markerArr.value.length > 0) {
@@ -116,7 +113,6 @@ const getInfoPlace = async () => {
   detailInfo.value = []; //초기화
   for (const key in resultpoisData.value) {
     const data = resultpoisData.value[key];
-    console.log(data.id);
 
     let url =
       "https://apis.openapi.sk.com/tmap/pois/" +
@@ -125,13 +121,9 @@ const getInfoPlace = async () => {
     const resp = await axios.get(url, {
       headers: { appKey: import.meta.env.VITE_T_MAP_SERVICE_KEY },
     });
-    console.log("받아온 상세정보 : ", typeof resp.data.poiDetailInfo);
     detailInfo.value.push(resp.data.poiDetailInfo);
   }
 
-  // 응답받은 POI 정보 저장
-  console.log("정답 !!", detailInfo.value);
-  console.log("아니여야돼", resultpoisData);
 };
 </script>
 

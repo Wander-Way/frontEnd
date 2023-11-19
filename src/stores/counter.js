@@ -1,25 +1,19 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 
-<<<<<<< HEAD
 export const planStore = defineStore("planStore", () => {
   const selectedPlaces = ref([]);
+
   const addSelectedPlace = (place) => {
-    console.log(place, "를 넣어요");
-    selectedPlaces.value.push(place);
-    console.log("넣어졌니??", selectedPlaces.value);
-    //return selectedPlaces.value;
+    // 현재 날짜의 배열이 없으면 새로운 배열을 생성
+    if (!selectedPlaces.value.length || selectedPlaces.value[selectedPlaces.value.length - 1].length >= 5) {
+      selectedPlaces.value.push([place]);
+    } else {
+      // 현재 날짜의 배열이 있고 최대 5개 미만이면 해당 배열에 추가
+      selectedPlaces.value[selectedPlaces.value.length - 1].push(place);
+    }
+    console.log("pinia에서 selectedPlaces : ",selectedPlaces.value);
   };
 
   return { selectedPlaces, addSelectedPlace };
-=======
-export const useCounterStore = defineStore("counter", () => {
-  const count = ref(0);
-  const doubleCount = computed(() => count.value * 2);
-  function increment() {
-    count.value++;
-  }
-
-  return { count, doubleCount, increment };
->>>>>>> d771188718b0c89a9754cc0bfbdb949a2e517297
-});
+})
