@@ -26,8 +26,10 @@ export const useBoardStore = defineStore("board", () => {
               params: params,
             });
             articles.value = response.data;
+            return true;
           } catch (error) {
             console.error(error);
+            return false;
           }
     };
 

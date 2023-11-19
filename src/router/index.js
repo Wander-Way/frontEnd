@@ -11,7 +11,20 @@ const router = createRouter({
     {
       path: "/mypage",
       name: "myPage",
-      component: () => import("@/components/mypage/MyPage.vue"),
+      component: () => import("@/views/MyPageView.vue"),
+      redirect: "/mypage/mypagehome",
+      children: [
+        {
+          name: "myPageHome",
+          path: "mypagehome",
+          component: () => import("@/views/MyPageView/MyPageHome.vue"),
+        },
+        {
+          name: "myPageLogin",
+          path: "login",
+          component: () => import("@/views/MyPageView/MyPageLogin.vue"),
+        }
+      ],
     },
     {
       path: "/hotplace",
@@ -37,16 +50,8 @@ const router = createRouter({
         },
       ],
     },
-    /*{
-      path: "/hotplace",
-      name: "hotPlace",
-      component: () => import("@/components/hotplace/HotPlace.vue"),
-    },
-    {
-      path: "/hotplace/board",
-      name: "hotPlaceBoard",
-      component: () => import("@/components/hotplace/HotPlaceBoard.vue"),
-    },*/
+
+
     {
       path: "/plan",
       name: "planYourRoute",
