@@ -11,18 +11,65 @@ const router = createRouter({
     {
       path: "/mypage",
       name: "myPage",
-      component: () => import("@/components/mypage/MyPage.vue"),
+      component: () => import("@/views/MyPageView.vue"),
+      redirect: "/mypage/mypagehome",
+      children: [
+        {
+          name: "myPageHome",
+          path: "mypagehome",
+          component: () => import("@/views/MyPageView/MyPageHome.vue"),
+          redirect: "/mypage/mypagehome/myprofile",
+          children: [
+            {
+              name: "myPageLikeList",
+              path: "likelist",
+              component: () => import("@/views/MyPageView/MyPageMyLikeList.vue"),
+            },
+            {
+              name: "myPageRouteList",
+              path: "routelist",
+              component: () => import("@/views/MyPageView/MyPageRouteList.vue"),
+            },
+            {
+              name: "myPageMyProfile",
+              path: "myprofile",
+              component: () => import("@/views/MyPageView/MyPageMyProfile.vue"),
+            }
+          ],
+        },
+        {
+          name: "myPageLogin",
+          path: "login",
+          component: () => import("@/views/MyPageView/MyPageLogin.vue"),
+        }
+      ],
     },
     {
       path: "/hotplace",
-      name: "hotPlace",
-      component: () => import("@/components/hotplace/HotPlace.vue"),
+      name: "hotplace",
+      component: () => import("@/views/HotplaceView.vue"),
+      
+      redirect: "/hotplace/boardhome",
+      children: [
+        {
+          path: "boardhome",
+          name: "hotplaceBoardHome",
+          component: () => import("@/views/HotplaceView/HotplaceHome.vue"),
+        },
+        {
+          path: "list",
+          name: "hotplaceBoardList",
+          component: () => import("@/views/HotplaceView/HotplaceBoardList.vue"),
+        },
+        {
+          name: "article-detail",
+          path: "article-detail/:id",
+          component: () => import("@/views/HotplaceView/HotplaceBoardDetail.vue"),
+        },
+      ],
     },
-    {
-      path: "/hotplace/board",
-      name: "hotPlaceBoard",
-      component: () => import("@/components/hotplace/HotPlaceBoard.vue"),
-    },
+
+
     {
       path: "/plan",
       name: "planYourRoute",

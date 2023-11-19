@@ -16,4 +16,3 @@ export const planStore = defineStore("planStore", () => {
   };
 
   return { selectedPlaces, addSelectedPlace };
-})
