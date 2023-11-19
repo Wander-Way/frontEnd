@@ -16,7 +16,7 @@ export const useMyPageStore = defineStore("mypage", () => {
         "profile": ""
     });
 
-
+    const myPageMyInfo = ref({});
 
     const requestLogin = async (loginRequestData) => {
         try {
@@ -31,6 +31,18 @@ export const useMyPageStore = defineStore("mypage", () => {
         }
     };
 
+    const requestMypage = async () => {
+        const params = {
+            "email": myLoginInfo.value.email,
+            "password":myLoginInfo.value.password  
+        };
+
+        const { data } = await axios.post("http://localhost:8080/user/mypage", params);
+        console.log('requestMypage 응답: ', data);
+        myPageMyInfo.value = data;
+        return;
+    }
+
     const logout = () => {
         myLoginInfo.value = {};
         bIsLogin.value = false;
@@ -41,6 +53,8 @@ export const useMyPageStore = defineStore("mypage", () => {
         bIsLogin,
         myLoginInfo,
         requestLogin,
-        logout
+        logout,
+        requestMypage,
+        myPageMyInfo
     })
 });

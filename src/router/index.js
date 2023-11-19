@@ -18,6 +18,24 @@ const router = createRouter({
           name: "myPageHome",
           path: "mypagehome",
           component: () => import("@/views/MyPageView/MyPageHome.vue"),
+          redirect: "/mypage/mypagehome/myprofile",
+          children: [
+            {
+              name: "myPageLikeList",
+              path: "likelist",
+              component: () => import("@/views/MyPageView/MyPageMyLikeList.vue"),
+            },
+            {
+              name: "myPageRouteList",
+              path: "routelist",
+              component: () => import("@/views/MyPageView/MyPageRouteList.vue"),
+            },
+            {
+              name: "myPageMyProfile",
+              path: "myprofile",
+              component: () => import("@/views/MyPageView/MyPageMyProfile.vue"),
+            }
+          ],
         },
         {
           name: "myPageLogin",

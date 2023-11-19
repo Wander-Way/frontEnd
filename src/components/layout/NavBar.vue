@@ -1,9 +1,19 @@
-<script setup></script>
+<script setup>
+
+import { RouterLink, useRouter } from "vue-router";
+
+const router = useRouter();
+
+const goMain =  () => {
+  router.push({ name: "main" });
+};
+
+</script>
 
 <template>
   <div>
     <StepBackwardOutlined />
-    <h3>NavBar</h3>
+    <h3 @click="goMain">Wander Way</h3>
     <ul>
       <li>
         <router-link :to="{ name: 'planYourRoute' }">여행계획</router-link>

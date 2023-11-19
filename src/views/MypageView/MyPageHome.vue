@@ -3,7 +3,7 @@ import { useMyPageStore } from "../../stores/mypage.js";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { computed } from "vue";
-
+import myPageSideSideNavBar from "../../views/MypageView/MyPageSideNavBar.vue";
 
 const router = useRouter();
 
@@ -36,6 +36,8 @@ const logOutButtonClick = () => {
         <div v-if="bisLogin">
             <p>로그인 되었습니다.</p>
             <button @click="logOutButtonClick">로그아웃</button>
+            <myPageSideSideNavBar></myPageSideSideNavBar>
+            <RouterView></RouterView>
         </div>
         <div v-else>
             <p>로그인이 필요합니다.</p>
