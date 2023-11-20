@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
-import { planStore } from "@/stores/counter";
+import { planStore } from "@/stores/plan";
 import { VueDraggableNext } from "vue-draggable-next";
 
 const store = planStore();

@@ -13,6 +13,8 @@
     "ant-design-vue": "^4.0.7",
     "axios": "^1.6.2",
     "material-design-icons-iconfont": "^6.7.0",
+    "openai": "^4.0.0",
+    "openapi": "^1.0.1",
     "pinia": "^2.1.7",
     "vue": "^3.3.8",
     "vue-draggable-next": "^2.2.1",
