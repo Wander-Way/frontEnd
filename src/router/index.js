@@ -23,7 +23,8 @@ const router = createRouter({
             {
               name: "myPageLikeList",
               path: "likelist",
-              component: () => import("@/views/MyPageView/MyPageMyLikeList.vue"),
+              component: () =>
+                import("@/views/MyPageView/MyPageMyLikeList.vue"),
             },
             {
               name: "myPageRouteList",
@@ -34,21 +35,21 @@ const router = createRouter({
               name: "myPageMyProfile",
               path: "myprofile",
               component: () => import("@/views/MyPageView/MyPageMyProfile.vue"),
-            }
+            },
           ],
         },
         {
           name: "myPageLogin",
           path: "login",
           component: () => import("@/views/MyPageView/MyPageLogin.vue"),
-        }
+        },
       ],
     },
     {
       path: "/hotplace",
       name: "hotplace",
       component: () => import("@/views/HotplaceView.vue"),
-      
+
       redirect: "/hotplace/boardhome",
       children: [
         {
@@ -64,11 +65,11 @@ const router = createRouter({
         {
           name: "article-detail",
           path: "article-detail/:id",
-          component: () => import("@/views/HotplaceView/HotplaceBoardDetail.vue"),
+          component: () =>
+            import("@/views/HotplaceView/HotplaceBoardDetail.vue"),
         },
       ],
     },
-
 
     {
       path: "/plan",
