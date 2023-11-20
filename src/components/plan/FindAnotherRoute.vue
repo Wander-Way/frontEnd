@@ -1,5 +1,5 @@
 <script setup>
-import Map from "./item/map.vue";
+import Map from "./item/Map.vue";
 import EditPlan from "./item/EditPlan.vue";
 import Buttons from "./item/Buttons.vue";
 </script>
