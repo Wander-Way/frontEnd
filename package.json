@@ -17,6 +17,7 @@
     "openapi": "^1.0.1",
     "pinia": "^2.1.7",
     "vue": "^3.3.8",
+    "vue-awesome-sidebar": "^1.2.3",
     "vue-draggable-next": "^2.2.1",
     "vue-router": "^4.2.5",
     "vuedraggable": "^4.1.0",
