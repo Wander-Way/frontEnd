@@ -28,8 +28,9 @@ const toggleView = () => {
 
       <section class="flex-item editplan-section">
         <button @click="toggleView">on/off 버튼</button>
-        <AiChat v-if="showAiChat"></AiChat>
-        <EditPlan v-else></EditPlan>
+        <hr />
+        <div v-show="showAiChat"><AiChat></AiChat></div>
+        <div v-show="!showAiChat"><EditPlan v-show="false"></EditPlan></div>
       </section>
     </div>
 
