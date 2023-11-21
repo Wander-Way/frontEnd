@@ -2,8 +2,7 @@
 import { ref, computed } from "vue";
 import { planStore } from "@/stores/plan";
 
-
-const location = ref(""); //나중에 enum이랑 통일해서 추가하자
+const location = ref("대전"); //나중에 enum이랑 통일해서 추가하자
 const title = ref("");
 const description = ref("");
 const tags = ref([]);
@@ -11,16 +10,30 @@ const tagInput = ref("");
 
 const addTag = () => {
   if (tagInput.value.trim() !== "") {
-        tags.value.push(tagInput.value.trim());
-        tagInput.value = "";
-      }
-}
-
+    tags.value.push(tagInput.value.trim());
+    tagInput.value = "";
+  }
+};
 
 const store = planStore();
-const handleSavePlan = () => store.savePlan(location,title,description,tags);
+const handleSavePlan = () => store.savePlan(location, title, description, tags);
 
-const locations = ["서울","대전","대구","부산","제주","인천","광주","경기","충북","충남","전북","전남","경상"];
+const locations = [
+  "서울",
+  "대전",
+  "대구",
+  "부산",
+  "제주",
+  "인천",
+  "광주",
+  "울산",
+  "경기",
+  "충북",
+  "충남",
+  "전북",
+  "전남",
+  "경상",
+];
 </script>
 
 <template>
