@@ -10,16 +10,13 @@ const router = useRouter();
 onMounted(() => {
   if (collapsed.value) {
     document.getElementById("app").style.paddingLeft = "65px";
-    document.getElementById("app").style.paddingRight = "130px";
   } else {
     document.getElementById("app").style.paddingLeft = "290px";
-    document.getElementById("app").style.paddingRight = "580px";
   }
 });
 
 onUnmounted(() => {
   document.getElementById("app").style.paddingLeft = "0px";
-  document.getElementById("app").style.paddingRight = "0px";
 });
 
 const sideOpenEvent = (isMini) => {
