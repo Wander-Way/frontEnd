@@ -55,43 +55,56 @@ const markToMap = (plans) => {
   }
 
   const positionBounds = new Tmapv2.LatLngBounds();
-  // 3. POI 마커 표시
-  for (let plan of plans) {
-    // POI 마커 정보 저장
-    const noorLat = Number(plan.noorlat);
-    const noorLon = Number(plan.noorlon);
-    const name = plan.name;
 
-    // 좌표 객체 생성
-    const pointCng = new Tmapv2.Point(noorlon, noorlat);
+  Object.values(plans).forEach((plan) => {
+    plan.map((place) => {
+        console.log(place);
 
-    // EPSG3857좌표계를 WGS84GEO좌표계로 변환
-    const projectionCng = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(
-      pointCng
-    );
+        // 마커표시
+            // POI 마커 정보 저장
+            const noorlat = Number(place.noorlat);
+            const noorlon = Number(place.noorlon);
+            const name = place.name;
 
-    const lat = projectionCng._lat;
-    const lon = projectionCng._lng;
+            // 좌표 객체 생성
+            const pointCng = new Tmapv2.Point(noorlon, noorlat);
 
-    // 좌표 설정
-    const markerPosition = new Tmapv2.LatLng(lat, lon);
+            // EPSG3857좌표계를 WGS84GEO좌표계로 변환
+            const projectionCng = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(
+              pointCng
+            );
 
-    // Marker 설정
-    marker.value = new Tmapv2.Marker({
-      position: markerPosition, // 마커가 표시될 좌표
-      //icon : "/upload/tmap/marker/pin_b_m_a.png",
-      icon: "/img/marker.png", // 아이콘 등록
-      iconSize: new Tmapv2.Size(24, 24), // 아이콘 크기 설정
-      title: name, // 마커 타이틀
-      map: map.value, // 마커가 등록될 지도 객체
-    });
+            const lat = projectionCng._lat;
+            const lon = projectionCng._lng;
 
-    // 마커들을 담을 배열에 마커 저장
-    markerArr.value.push(marker.value);
-    positionBounds.extend(markerPosition); // LatLngBounds의 객체 확장
-  }
+            // 좌표 설정
+            const markerPosition = new Tmapv2.LatLng(lat, lon);
+
+            // Marker 설정
+            marker.value = new Tmapv2.Marker({
+              position: markerPosition, // 마커가 표시될 좌표
+              //icon : "/upload/tmap/marker/pin_b_m_a.png",
+              icon: "/img/marker.png", // 아이콘 등록
+              iconSize: new Tmapv2.Size(24, 24), // 아이콘 크기 설정
+              title: name, // 마커 타이틀
+              map: map.value, // 마커가 등록될 지도 객체
+            });
+
+            // 마커들을 담을 배열에 마커 저장
+            markerArr.value.push(marker.value);
+            positionBounds.extend(markerPosition); // LatLngBounds의 객체 확장
+            
+            //EditPlan에도 저장
+            store.addSelectedPlace(place);
+
+        return place; // .map()에서 반환된 배열은 여기서 사용하지 않으므로 필요 없지만 기본적으로는 반환하는 것이 좋습니다.
+      });
+  });
+
   map.value.panToBounds(positionBounds); // 확장된 bounds의 중심으로 이동시키기
   map.value.zoomOut();
+
+
 };
 
 //검색하기 : 2. POI 통합 검색 API 요청

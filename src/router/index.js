@@ -108,13 +108,11 @@ const router = createRouter({
       path: "/route",
       name: "anotherRoute",
       component: () => import("@/components/route/AnotherRoute.vue"),
-      children: [
-        {
-          path: ":id",
-          name: "routeDetail",
-          component: () => import("@/components/route/RouteDetail.vue"),
-        },
-      ],
+    },
+    {
+      path: "/route/:id",
+      name: "routeDetail",
+      component: () => import("@/components/route/RouteDetail.vue"),
     },
   ],
 });
