@@ -34,221 +34,85 @@ const submitComment = async () => {
     <title>Phantom by HTML5 UP</title>
     <!-- <link rel="stylesheet2" href="./editorial/assets/css/main2.css" /> -->
   </head>
-  <body class="is-preload">
+
+<body class="is-preload">
     <!-- Wrapper -->
     <div id="wrapper">
       <!-- Main -->
       <div id="main">
         <div class="inner">
-          <!-- Header -->
-          <header id="header">
-            <a href="#" class="logo"><strong>Editorial</strong> by HTML5 UP</a>
-            <ul class="icons">
-              <li>
-                <a href="#" class="icon brands fa-twitter"
-                  ><span class="label">Twitter</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-facebook-f"
-                  ><span class="label">Facebook</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-snapchat-ghost"
-                  ><span class="label">Snapchat</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-instagram"
-                  ><span class="label">Instagram</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-medium-m"
-                  ><span class="label">Medium</span></a
-                >
-              </li>
-            </ul>
-          </header>
+
+
+
 
           <!-- Banner -->
           <section id="banner">
             <div class="content">
               <header>
                 <h1>
-                  Hi, I’m Editorial<br />
-                  by HTML5 UP
+                  {{ article.title }}<br />
                 </h1>
-                <p>A free and fully responsive site template</p>
               </header>
               <p>
-                Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin
-                aliquam facilisis ante interdum congue. Integer mollis, nisl
-                amet convallis, porttitor magna ullamcorper, amet egestas
-                mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id
-                euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor
-                sit nullam.
+                <!--Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin
+                        aliquam facilisis ante interdum congue. Integer mollis, nisl
+                        amet convallis, porttitor magna ullamcorper, amet egestas
+                        mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id
+                        euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor
+                        sit nullam.-->
+                여기다가 ai 요청 복붙 사진도 복붙가능? <br>
+
+                {{ article.content }}
               </p>
-              <ul class="actions">
-                <li><a href="#" class="button big">Learn More</a></li>
-              </ul>
+              <!--<ul class="actions">
+                      <li><a href="#" class="button big">Learn More</a></li>
+                    </ul>-->
             </div>
-            <span class="image object">
-              <img src="./editorial/images/pic10.jpg" alt="" />
-            </span>
-          </section>
-
-          <!-- Section -->
-          <section>
-            <header class="major">
-              <h2>Erat lacinia</h2>
-            </header>
-            <div class="features">
-              <article>
-                <span class="icon fa-gem"></span>
-                <div class="content">
-                  <h3>Portitor ullamcorper</h3>
-                  <p>
-                    Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-                    dolore. Proin aliquam facilisis ante interdum. Sed nulla
-                    amet lorem feugiat tempus aliquam.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <span class="icon solid fa-paper-plane"></span>
-                <div class="content">
-                  <h3>Sapien veroeros</h3>
-                  <p>
-                    Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-                    dolore. Proin aliquam facilisis ante interdum. Sed nulla
-                    amet lorem feugiat tempus aliquam.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <span class="icon solid fa-rocket"></span>
-                <div class="content">
-                  <h3>Quam lorem ipsum</h3>
-                  <p>
-                    Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-                    dolore. Proin aliquam facilisis ante interdum. Sed nulla
-                    amet lorem feugiat tempus aliquam.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <span class="icon solid fa-signal"></span>
-                <div class="content">
-                  <h3>Sed magna finibus</h3>
-                  <p>
-                    Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-                    dolore. Proin aliquam facilisis ante interdum. Sed nulla
-                    amet lorem feugiat tempus aliquam.
-                  </p>
-                </div>
-              </article>
-            </div>
-          </section>
-
-          <!-- Section -->
-          <section>
-            <header class="major">
-              <h2>Ipsum sed dolor</h2>
-            </header>
-            <div class="posts">
-              <article>
-                <a href="#" class="image"
-                  ><img src="./editorial/images/pic01.jpg" alt=""
-                /></a>
-                <h3>Interdum aenean</h3>
-                <p>
-                  Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-                  dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
-                  lorem feugiat tempus aliquam.
-                </p>
-                <ul class="actions">
-                  <li><a href="#" class="button">More</a></li>
-                </ul>
-              </article>
-              <article>
-                <a href="#" class="image"
-                  ><img src="./editorial/images/pic02.jpg" alt=""
-                /></a>
-                <h3>Nulla amet dolore</h3>
-                <p>
-                  Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-                  dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
-                  lorem feugiat tempus aliquam.
-                </p>
-                <ul class="actions">
-                  <li><a href="#" class="button">More</a></li>
-                </ul>
-              </article>
-              <article>
-                <a href="#" class="image"
-                  ><img src="./editorial/images/pic03.jpg" alt=""
-                /></a>
-                <h3>Tempus ullamcorper</h3>
-                <p>
-                  Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-                  dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
-                  lorem feugiat tempus aliquam.
-                </p>
-                <ul class="actions">
-                  <li><a href="#" class="button">More</a></li>
-                </ul>
-              </article>
-              <article>
-                <a href="#" class="image"
-                  ><img src="./editorial/images/pic04.jpg" alt=""
-                /></a>
-                <h3>Sed etiam facilis</h3>
-                <p>
-                  Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-                  dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
-                  lorem feugiat tempus aliquam.
-                </p>
-                <ul class="actions">
-                  <li><a href="#" class="button">More</a></li>
-                </ul>
-              </article>
-              <article>
-                <a href="#" class="image"
-                  ><img src="./editorial/images/pic05.jpg" alt=""
-                /></a>
-                <h3>Feugiat lorem aenean</h3>
-                <p>
-                  Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-                  dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
-                  lorem feugiat tempus aliquam.
-                </p>
-                <ul class="actions">
-                  <li><a href="#" class="button">More</a></li>
-                </ul>
-              </article>
-              <article>
-                <a href="#" class="image"
-                  ><img src="./editorial/images/pic06.jpg" alt=""
-                /></a>
-                <h3>Amet varius aliquam</h3>
-                <p>
-                  Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-                  dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
-                  lorem feugiat tempus aliquam.
-                </p>
-                <ul class="actions">
-                  <li><a href="#" class="button">More</a></li>
-                </ul>
-              </article>
-            </div>
-          </section>
-        </div>
+        </section>
       </div>
+      <section>
+      <div class="commentdiv">
+          <body class="bg-gray-100">
+            <div class="container mx-0 px-8 py-8">
+              <div class="bg-white shadow-lg rounded-lg p-6">
+                <div class="mb-4">
+                  <label for="comment" class="block text-gray-700 text-sm font-bold mb-2">Comment</label>
+                  <div class="flex">
+                    <input type="text" id="comment" name="comment" placeholder="user comment input here"
+                      v-model="wroteContent" required
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                  <button @click="submitComment"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4">Submit</button>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div v-for="(comment, index) in article.hotPlaceCommentDtoList" :key="index">
+                  <div class="flex items-center bg-gray-50 p-4 rounded-lg">
+                    <div class="w-16 h-16 bg-gray-300 rounded-full mr-4"></div>
+                    <div class="flex-1">
+                        <div class="text-sm font-semibold">{{ comment.content }}</div>
+                        <div class="text-xs text-gray-600">{{ comment.nickname }} / {{ comment.createDate }}</div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                <div class="flex items-center bg-gray-50 p-4 rounded-lg">
+                  <div class="w-16 h-16 bg-gray-300 rounded-full mr-4"></div>
+                  <div class="flex-1">
+                    <div class="text-sm font-semibold">comment2</div>
+                    <div class="text-xs text-gray-600">email2 / commented date2</div>
+                  </div>
+                </div>-->
+              </div>
+            </div>
+          </div>
+        </body>
+      </div>
+    </section>
     </div>
+  </div>
 
-    <!-- <a-flex gap="middle" align="start" vertical>
+  <!-- <a-flex gap="middle" align="start" vertical>
     <p>Select justify :</p>
     <a-segmented v-model:value="justify" :options="justifyOptions" />
     <p>Select align :</p>
@@ -259,7 +123,7 @@ const submitComment = async () => {
       <a-button type="primary">Primary</a-button>
     </a-flex> -->
 
-    <!-- <div>
+  <!-- <div>
         <h1>디테일 뷰</h1>
         <RouterLink to="/hotplace">목록</RouterLink>
         <table class="styled-table">
@@ -280,42 +144,45 @@ const submitComment = async () => {
                 <td>{{ article.member }}</td>
             </tr>
             <tr>
-                <td>{{ article.content }}</td>
-            </tr>
-            <br>
-        </table>
+                        <td>{{ article.content }}</td>
+                    </tr>
+                    <br>
+                </table>
 
-        <br>
-        <br>
-        <br>
-        <div v-for="(comment, index) in article.hotPlaceCommentDtoList" :key="index">
-            <table class="styled-table">
-                <tr>
-                    <th>댓글 번호</th>
-                    <td>{{ index }}</td>
-                    <th>작성자</th>
-                    <td>{{ comment.nickname }}</td>
-                    <th>작성일</th>
-                    <td>{{ comment.createDate }}</td>
-                    <th>프로필이미지</th>
-                    <td>{{ comment.profileImg }}</td>
-                    <th>글 내용</th>
-                    <td>{{ comment.content }}</td>
-                </tr>
-            </table>
-        </div>
-        <form class="comment-form">
-            <label for="comment">Comment:</label>
-            <input type="text" id="comment" v-model="wroteContent" required>
-        </form>
-        <button type="submit" @click="submitComment">Submit</button>
+                <br>
+                <br>
+                <br>
+                <div v-for="(comment, index) in article.hotPlaceCommentDtoList" :key="index">
+                    <table class="styled-table">
+                        <tr>
+                            <th>댓글 번호</th>
+                            <td>{{ index }}</td>
+                            <th>작성자</th>
+                            <td>{{ comment.nickname }}</td>
+                            <th>작성일</th>
+                            <td>{{ comment.createDate }}</td>
+                            <th>프로필이미지</th>
+                            <td>{{ comment.profileImg }}</td>
+                            <th>글 내용</th>
+                            <td>{{ comment.content }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <form class="comment-form">
+                    <label for="comment">Comment:</label>
+                    <input type="text" id="comment" v-model="wroteContent" required>
+                </form>
+                <button type="submit" @click="submitComment">Submit</button>
 
-    </div> -->
+            </div> -->
   </body>
 </template>
 
 <style scoped>
 @import url("@/views/HotplaceView/editorial/assets/css/main2.css");
+
+.commentdiv {
+}
 </style>
 
 <!-- 

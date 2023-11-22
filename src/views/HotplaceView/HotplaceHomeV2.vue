@@ -42,13 +42,11 @@ const handleButtonClick = async () => {
     <div id="wrapper">
       <!-- Banner -->
       <section id="intro" class="main">
-        <h2>여행을 굳이 가야 하나요?</h2>
+        <h3>Discover the magic where flavors dance and ambiance enchants</h3>
         <p>
-          여행을 굳이 가야 할까 편한 집이 있는데 그럴꺼면 집은 왜 큰돈 주고
-          사는걸까<br />
-          한달에 오십만원을 월세로 쓰는데 여행을 가면 오십만원을 다
-          날리는거잖아<br />
-          집에 있으면 더 재미있는데 왜 여행을 가냐구
+          요즘 인기 있는 여행지는 다 모였네! <br>
+          TMAP, 관광 빅데이터, Instagram 태그 활동 정보를 분석하여 제공하는<br>
+          지역별 여행지와 맛집 정보를 확인해 보세요<br>
         </p>
         <ul class="actions">
           <li>
@@ -80,6 +78,8 @@ const handleButtonClick = async () => {
             <a class="button big" @click="handleButtonClick">Travel place</a>
           </li>
         </ul>
+        <div class = "emptytag"></div>
+
       </section>
     </div>
   </body>
@@ -117,5 +117,9 @@ const handleButtonClick = async () => {
   white-space: nowrap;
   text-transform: uppercase;
   letter-spacing: 0.325em;
+}
+
+.emptytag {
+  height: 300px;
 }
 </style>

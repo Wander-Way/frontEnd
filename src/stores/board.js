@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const useBoardStore = defineStore("board", () => {
 
-    const selectedOption = ref("");//메인화면에서 지역 선택한 값
+    const selectedOption = ref("서울특별시");//메인화면에서 지역 선택한 값
 
     const setSelectedOption = (option) => {
       selectedOption.value = option;
