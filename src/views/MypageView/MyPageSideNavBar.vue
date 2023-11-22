@@ -3,6 +3,10 @@ import { ref, watch } from "vue";
 import { onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
 
+import { useMyPageStore } from "../../stores/mypage.js";
+import { storeToRefs } from "pinia";
+
+const myPageStore = useMyPageStore();
 const collapsed = ref(false);
 const miniMenu = ref(false);
 const router = useRouter();
@@ -32,6 +36,12 @@ const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
+const logOutButtonClick = async () => {
+    const result = await myPageStore.logout();
+    console.log('result : ', result);
+    await router.push({ name: "main" });
+    return;
+};
 /*
 const sideOpenEvent = async (isMini) => {
   console.log("메뉴최소화여부 : ", isMini);
@@ -59,6 +69,9 @@ const menuClickHandler = (e) => {
     router.push({ name: "myPageRouteList" });
   } else if (e.name === "찜 목록") {
     router.push({ name: "myPageLikeList" });
+  }else if (e.name === "로그아웃") {
+    logOutButtonClick();
+    router.push({ name: "myPageLikeList" });
   }
 
   console.log("menu 클릭:", e);
@@ -75,6 +88,10 @@ const testMenu = [
   },
   {
     name: "찜 목록",
+    icon: { text: "W", class: "material-icons-outlined" },
+  },
+  {
+    name: "로그아웃",
     icon: { text: "L", class: "material-icons-outlined" },
   },
   /*children: [
