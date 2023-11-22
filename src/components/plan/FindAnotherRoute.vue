@@ -23,17 +23,24 @@ const clickBtn = (plan) => {
 </script>
 
 <template>
-  <div>
-    <h3>FindAnotherRoute</h3>
-    <pre>
-      다른사람들의 루트를 참고하여 경로에 추가해보세요.
-      [여행루트] 게시판에 방문하면 더 세부적인 검색이 가능합니다.
-    </pre>
-    <section class="main-section">
-      <div class="left-section">
-        <input placeholder="여행할 지역을 입력하세요" v-model="keyword" />
-        <button @click="findPlan">지역검색</button>
-        <Map></Map>
+  <div id="box">
+    <div class="head">
+      <h1>FindAnotherRoute</h1>
+      <hr />
+      <pre>
+다른사람들의 루트를 참고하여 경로에 추가해보세요.
+[여행루트] 게시판에 방문하면 더 세부적인 검색이 가능합니다.
+      </pre>
+  </div>
+
+
+    <section class="container">
+        <section class="map-section">
+          <input placeholder="여행할 지역을 입력하세요" v-model="keyword" />
+          <button @click="findPlan">지역검색</button>
+          <Map></Map>
+        </section>
+
         <div v-for="plan in plans" class="card">
           <div>제목 : {{ plan.title }}</div>
           <div>한줄소개 : {{ plan.description }}</div>
@@ -41,47 +48,85 @@ const clickBtn = (plan) => {
           <div>프로필사진 : {{ plan.profile }}</div>
           <button @click="clickBtn(plan)">[+]</button>
         </div>
-      </div>
-      <div class="right-section">
+
+      <section class="editplan-section">
         <EditPlan></EditPlan>
-      </div>
+      </section>
     </section>
 
-    <Buttons></Buttons>
+    <div class="buttons">
+      <Buttons></Buttons>
+    </div>
   </div>
 
 </template>
 
 <style scoped>
-  .main-section {
-    display: flex;
-    justify-content: space-between;
-  }
 
-  .left-section {
-    flex: 1; /* 왼쪽 섹션이 남은 공간을 모두 차지하도록 함 */
-    padding-right: 10px; /* 오른쪽과의 간격 조절 */
-  }
-
-  .right-section {
-    width: 300px; /* 오른쪽 섹션의 고정된 너비 지정 */
-  }
-
-.card {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px;
-  width: 300px; /* 카드의 너비 조절 */
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;800&display=swap");
+@font-face {
+  font-family: "notosans-bold";
+  src: url("../../../public/font/NotoSansKR-Bold.ttf");
 }
 
-.card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px; /* 이미지에 둥근 테두리 적용 */
-  margin-bottom: 10px;
+@font-face {
+  font-family: "notosans-regular";
+  src: url("../../../public/font/NotoSansKR-Regular.ttf");
 }
 
-.card div {
-  margin-bottom: 5px;
+#box {
+  /* border: 1px solid pink; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0% 10%;
+}
+.head {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+h1 {
+  /* 상우하좌 */
+  font-family: "Abhaya Libre", serif;
+  font-size: 50px;
+  font-weight: 800;
+  padding: 50px 0px 0px 0px;
+  margin: 0px 0px;
+}
+pre {
+  overflow: hidden;
+  margin-top: 10px;
+  font-family: notosans-bold;
+  margin-top: 23px;
+  line-height: 1.5; /* 행간을 1.5로 설정, 필요에 따라 조절 */
+}
+
+hr {
+  width: 60%; /* 원하는 길이로 설정 (예: 50%) */
+  /* margin: 0px 40px; 가운데 정렬 및 위아래 여백 설정 (선택사항) */
+}
+
+section {
+  /* border: 1px solid black; */
+}
+.container {
+  /* border: 1px solid rgb(182, 66, 66); */
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.map-section {
+  width: 65%;
+}
+
+.editplan-section {
+  width: 25%;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

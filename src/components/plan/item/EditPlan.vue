@@ -26,39 +26,156 @@ const onDragEnd = (index, event) => {
 </script>
 
 <template>
-  <h1>추가된 여행지를 드래그앤드랍하여 순서 변경하기</h1>
   <section>
-    <!-- VueDraggableNext를 ul 바깥으로 이동 -->
-    <div v-for="(group, index) in selectedPlaces" :key="index">
-      <h3>DAY{{ index + 1 }}</h3>
+    <div v-if="selectedPlaces.length == 0" class="empty">
+      <h2 class="highlight">여행계획이 비어있습니다</h2>
+      <img src="/img/empty_box.png">
+      <p>검색을 통해 일정을 추가해보세요!</p>
+    </div>
+
+
+    <div v-else v-for="(group, index) in selectedPlaces" :key="index">
+      <h3>📌 DAY {{ index + 1 }}</h3>
       <ul :class="'day' + (index + 1)">
         <VueDraggableNext
           :animation="200"
           @end="($event) => onDragEnd(index, $event)"
         >
-          <li class="card" v-for="(place, orderIndex) in group" :key="place.id">
-            <div>{{ place.id }}</div>
-            <div>{{ place.name }}</div>
-            <button @click="removePlace(index, orderIndex)">[-]</button>
+          <li class="card-container" v-for="(place, orderIndex) in group" :key="place.id">
+            <div class="card">
+              <img src="/img/cardImg.jpeg" alt="Card Image" />
+              <div class="card-content">
+                <p>{{ place.name }}</p>
+                <p>
+                  <font-awesome-icon :icon="['fas', 'location-dot']" size="sm" style="color: #302f6f;" />  {{ place.bldAddr }}<br>
+                  <font-awesome-icon :icon="['fas', 'phone']" size="sm" style="color: #302f6f;" /> {{ place.tel }}
+                </p>
+              </div>
+              <div @click="removePlace(index, orderIndex)" class="icon">
+                <font-awesome-icon :icon="['fas', 'circle-minus']" size="lg" style="color: #1f2d93;" />
+              </div>
+            </div>
           </li>
         </VueDraggableNext>
       </ul>
     </div>
+
   </section>
 </template>
 
 <style scoped>
-.card {
-  background-color: #f4f4f4;
-  border: 1px solid #ddd;
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;800&display=swap");
+@font-face {
+  font-family: "notosans-bold";
+  src: url("/font/NotoSansKR-Bold.ttf");
+}
+
+@font-face {
+  font-family: "notosans-regular";
+  src: url("/font/NotoSansKR-Regular.ttf");
+}
+.highlight{
+  display: inline;
+  box-shadow: inset 0 -10px 0 #d9dafc; 
+  /*-10px은 highlight의 두께*/
+}
+.empty {
+  padding: 40px 0px;
+  width: 100%;
+  height: 480px;
+  border: 2px dashed rgb(214, 214, 214);
+  border-radius: 8px;
+  /* background-color: #6f74b4; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  gap : 50px;
+}
+
+.empty img{
+  width: 50%;
+}
+
+h3 {
+  margin-top: 30px;
+  font-family: 'EB Garamond', serif;
+  font-size: 30px;
+}
+
+h2,p {
+  font-family: "notosans-regular";
+}
+
+ul, ol {
+  list-style: none;
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
+section {
+    max-height: 600px; /* 적절한 높이로 설정, 스크롤이 활성화될 최대 높이 */
+    overflow-y: auto; /* 세로 스크롤을 활성화 */
+ }
+
+ .card-container {
+  position: relative;
+}
+.icon {
+  position: absolute;
+  top: -9px; /* 상단 여백 조절 */
+  right: -5px; /* 우측 여백 조절 */
+}
+
+ .card {
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 15px;
+  padding: 5px 20px;
+  border: 0.1px solid #e9e9e9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 250px;
+  height: 80px;
+}
+
+.card img {
+  width: 30%;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  margin-bottom: 10px;
-  cursor: grab; /* 추가: 드래그 가능한 커서 스타일 */
-  display: flex; /* 추가: 세로 정렬을 위한 flex 속성 사용 */
-  flex-direction: column; /* 추가: 컬럼 방향으로 정렬 */
-  transition: box-shadow 0.3s ease; /* 드래그 시 그림자에 애니메이션 적용 */
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  /* margin-right: 5px; */
+}
+.card-content {
+  width: 60%;
+  height: 60px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-content p:first-child {
+  margin-top: 4px;
+  margin-bottom: 5px;
+  font-family: "notosans-bold";
+  font-size: 15px; /* 첫 번째 p 태그의 크기를 18px로 설정 */
+}
+
+.card-content p:last-child {
+  font-family: "notosans-regular";
+  font-size: 12px; /* 두 번째 p 태그의 크기를 15px로 설정 */
 }
 
 .card:hover {
@@ -70,5 +187,19 @@ const onDragEnd = (index, event) => {
 .card:active {
   cursor: grabbing;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar {
+  width: 10px; /* 스크롤바의 너비 */
+}
+
+::-webkit-scrollbar-thumb {
+  height: 10px; /* 스크롤바의 길이 */
+  background: #6f74b4; /* 스크롤바의 색상 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(75, 76, 80, 0.1); /*스크롤바 뒷 배경 색상*/
 }
 </style>

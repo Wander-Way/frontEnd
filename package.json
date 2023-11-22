@@ -22,6 +22,7 @@
     "openai": "^4.0.0",
     "openapi": "^1.0.1",
     "pinia": "^2.1.7",
+    "sass": "^1.69.5",
     "vue": "^3.3.8",
     "vue-awesome-sidebar": "^1.2.3",
     "vue-draggable-next": "^2.2.1",

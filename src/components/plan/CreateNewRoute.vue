@@ -25,7 +25,7 @@ import Buttons from "./item/Buttons.vue";
       </section>
     </div>
 
-    <div>
+    <div class="buttons">
       <Buttons></Buttons>
     </div>
   </div>
@@ -44,11 +44,11 @@ import Buttons from "./item/Buttons.vue";
 }
 
 #box {
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 10%;
+  margin: 0% 10%;
 }
 .head {
   width: 100%;
@@ -80,15 +80,22 @@ section {
   /* border: 1px solid black; */
 }
 .container {
+  /* border: 1px solid rgb(182, 66, 66); */
   display: flex;
-  width: 90%;
+  width: 100%;
   justify-content: space-between;
 }
 .map-section {
-  width: 60%;
+  width: 65%;
 }
 
 .editplan-section {
-  width: 30%;
+  width: 25%;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

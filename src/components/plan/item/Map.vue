@@ -234,6 +234,7 @@ EventBus.on("setMapByAnotherRoute", (plans) => {
     <!-- 왼쪽섹션 : 검색창, 지도, 검색결과-->
     <div class="left-section">
       <div class="map-container">
+        <!-- 검색창-->
         <div class="input-container">
           <font-awesome-icon
             :icon="['fas', 'magnifying-glass']"
@@ -249,7 +250,6 @@ EventBus.on("setMapByAnotherRoute", (plans) => {
             search
           </button>
         </div>
-
         <!-- 맵 -->
         <div id="map_div" class="map_wrap"></div>
         <!-- 카드 그룹 -->
@@ -265,7 +265,8 @@ EventBus.on("setMapByAnotherRoute", (plans) => {
             <div class="card-content">
               <p>{{ place.name }}</p>
               <p>
-                {{ place.bldAddr }}
+                {{ place.bldAddr }}<br>
+                {{ place.tel }}
               </p>
             </div>
           </div>
@@ -304,12 +305,6 @@ EventBus.on("setMapByAnotherRoute", (plans) => {
   flex-direction: column;
   align-items: center;
 }
-
-.map_wrap {
-  height: 500px; /* 맵의 높이 설정 */
-  overflow: hidden;
-}
-
 .cards-container {
   display: flex;
   width: 100%;
@@ -329,12 +324,11 @@ EventBus.on("setMapByAnotherRoute", (plans) => {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 25%;
+  width: 30%;
 }
 
 .card img {
-  border-radius: 8px;
+  border-radius: 5px;
   height: 90%;
   width: 70px;
   object-fit: cover;
@@ -355,14 +349,14 @@ EventBus.on("setMapByAnotherRoute", (plans) => {
 }
 
 .card-content p:first-child {
-  margin-top: 5px;
+  margin-top: 8px;
   font-family: "notosans-bold";
-  font-size: 18px; /* 첫 번째 p 태그의 크기를 18px로 설정 */
+  font-size: 15px; /* 첫 번째 p 태그의 크기를 18px로 설정 */
 }
 
 .card-content p:last-child {
   font-family: "notosans-regular";
-  font-size: 15px; /* 두 번째 p 태그의 크기를 15px로 설정 */
+  font-size: 12px; /* 두 번째 p 태그의 크기를 15px로 설정 */
 }
 .icon {
   position: absolute;
@@ -411,13 +405,16 @@ EventBus.on("setMapByAnotherRoute", (plans) => {
   border-radius: 50px;
   cursor: pointer;
   font-family: "Abhaya Libre", serif;
+  transition: background-color 0.3s ease;
 }
+
+
 #btn_select:hover {
   background-color: #b5afff;
 }
 
 ::-webkit-scrollbar {
-  width: 4px; /* 스크롤바의 너비 */
+  height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
