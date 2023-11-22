@@ -50,8 +50,13 @@ const router = createRouter({
       name: "hotplace",
       component: () => import("@/views/HotplaceView.vue"),
 
-      redirect: "/hotplace/boardhome",
+      redirect: "/hotplace/test",
       children: [
+        {
+          name: "hotplaceTest",
+          path: "test",
+          component: () => import("@/views/HotplaceView/HotplaceTest.vue"),
+        },
         {
           path: "boardhome",
           name: "hotplaceBoardHome",
