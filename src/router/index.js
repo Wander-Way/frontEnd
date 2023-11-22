@@ -52,10 +52,15 @@ const router = createRouter({
 
       redirect: "/hotplace/boardhome",
       children: [
+        // {
+        //   name: "hotplaceTest",
+        //   path: "test",
+        //   component: () => import("@/views/HotplaceView/HotplaceTest.vue"),
+        // },
         {
           path: "boardhome",
           name: "hotplaceBoardHome",
-          component: () => import("@/views/HotplaceView/HotplaceHome.vue"),
+          component: () => import("@/views/HotplaceView/HotplaceHomeV2.vue"),
         },
         {
           path: "list",
