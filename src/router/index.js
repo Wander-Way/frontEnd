@@ -119,11 +119,6 @@ const router = createRouter({
       name: "anotherRoute",
       component: () => import("@/components/route/AnotherRoute.vue"),
     },
-    {
-      path: "/route/:id",
-      name: "routeDetail",
-      component: () => import("@/components/route/RouteDetail.vue"),
-    },
   ],
 });
 
