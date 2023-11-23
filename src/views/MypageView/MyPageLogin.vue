@@ -34,6 +34,15 @@ const login = async () => {
     alert("로그인 실패");
   }
 };
+const signUpButtonClick = () => {
+  router.push({ name: "myPageSignUp" });
+};
+
+const findPassword = (email) => {
+  const result = myPageStore.requestPassword(email);
+  console.log("result : ", result);
+};
+//findPassword('ssafytest@gmail.com');
 </script>
 
 <template>
@@ -51,17 +60,6 @@ const login = async () => {
       <div class="sign-up-container">
         <form>
           <h1>Create Account</h1>
-          <!-- <div class="social-links">
-            <div>
-              <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            </div>
-            <div>
-              <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            </div>
-            <div>
-              <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-            </div>
-          </div> -->
           <span>or use your email for registration</span>
           <input type="text" placeholder="Name" />
           <input type="email" placeholder="Email" />
@@ -73,18 +71,6 @@ const login = async () => {
         <form @submit.prevent="login">
           <h1>로그인</h1>
           <br />
-
-          <!-- <div class="social-links">
-            <div>
-              <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            </div>
-            <div>
-              <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            </div>
-            <div>
-              <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-            </div>
-          </div> -->
           <span>Use your email account</span>
           <input type="email" v-model="email" placeholder="Email" />
           <input type="password" v-model="password" placeholder="Password" />
@@ -98,9 +84,10 @@ const login = async () => {
           <button id="signIn" class="overlay_btn">Sign In</button>
         </div>
         <div class="overlay-right">
-          <h1>Hello, Friend</h1>
           <p>Enter your personal details and start journey with us</p>
-          <button id="signUp" class="overlay_btn">Sign Up</button>
+          <button id="signUp" class="overlay_btn" @click="signUpButtonClick">
+            Sign Up
+          </button>
         </div>
       </div>
     </div>

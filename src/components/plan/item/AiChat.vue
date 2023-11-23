@@ -139,10 +139,7 @@ const callChatGPT = async (message) => {
             placeholder="Type a message..."
           />
           <button type="submit" @click="sendMessage">
-            <font-awesome-icon
-              :icon="['far', 'paper-plane']"
-              style="color: #45de9c"
-            />
+            <i class="fas fa-paper-plane"></i>
           </button>
         </div>
       </div>
@@ -152,20 +149,6 @@ const callChatGPT = async (message) => {
 
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
-
-::-webkit-scrollbar {
-  width: 10px; /* 스크롤바의 너비 */
-}
-
-::-webkit-scrollbar-thumb {
-  height: 10px; /* 스크롤바의 길이 */
-  background: #6f74b4; /* 스크롤바의 색상 */
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(75, 76, 80, 0.1); /*스크롤바 뒷 배경 색상*/
-}
 
 $font: "Lato", sans-serif;
 
@@ -272,11 +255,10 @@ $dark: #777777;
 }
 
 .incoming {
-  // position: absolute;
-  width: 80%;
+  position: absolute;
+  width: 50%;
   height: 100%;
   padding: 20px;
-  word-wrap: break-word; /* 긴 단어가 부모 너비를 초과할 때 줄 바꿈 */
   .bubble {
     background: lighten($dark, 23%);
   }
@@ -284,8 +266,8 @@ $dark: #777777;
 
 .typing {
   position: absolute;
-  top: 85%;
-  left: 25px;
+  top: 67%;
+  left: 20px;
   .bubble {
     background: lighten($dark, 45%);
     padding: 8px 13px 9px 13px;
@@ -322,12 +304,12 @@ $dark: #777777;
 }
 
 .outgoing {
-  position: relative;
-  // padding: 20px;
-  left: 15%;
-  // top: 15%;
-  width: 80%;
-  // height: 100%;
+  position: absolute;
+  padding: 20px;
+  right: 0;
+  top: 15%;
+  width: 50%;
+  height: 100%;
   .bubble {
     background: $primary;
     float: right;

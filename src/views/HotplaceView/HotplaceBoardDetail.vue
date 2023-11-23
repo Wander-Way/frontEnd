@@ -4,15 +4,90 @@ import { useRoute, useRouter, RouterLink } from "vue-router";
 import { useBoardStore } from "@/stores/board";
 import { ref } from "vue";
 import { reactive } from "vue";
+import { onMounted } from "vue";
+import axios from "axios";
+import { storeToRefs } from "pinia";
 
-const boardStore = useBoardStore();
+
+
+
+const callChatGPTBoard = async (message) => {
+  const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+  const apiUrl = "https://api.openai.com/v1/chat/completions";
+
+  console.log("callChatGPTBoard 실행");
+  console.log("message : ", message);
+
+  const data = JSON.stringify({
+    messages: [
+      {
+        role: "user",
+        content:
+          message +
+          "\n 이 여행지에 대한 설명을 최대한 길고 자세하게 작성해줘. 사진을 제공할 수 있으면 제공 해줘.",
+      },
+    ],
+    max_tokens: 400,
+    model: "gpt-3.5-turbo",
+  });
+
+  try {
+    const response = await axios.post(apiUrl, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+    });
+
+    return response.data.choices[0].message.content;
+  } catch (error) {
+    //console.error("Error calling ChatGPT:", error.response.data);
+    console.error("Error calling ChatGPT:", error.response); 
+    throw error;
+  } finally {
+    isLoading.value = false;
+    
+  console.log("callChatGPTBoard 실행 종료");
+    //loading.value = false; // API 요청이 완료되면 로딩 상태를 비활성화
+  }
+};
+
+
+
 
 const article = computed(() => boardStore.article);
 const router = useRouter();
 const route = useRoute();
-boardStore.getArticle(route.params.id);
+
+
+
+const debugForAI = async () => {
+  console.log("debugForAI 실행");
+
+  let article = boardStore.article;
+  console.log("?? : ", article)
+  console.log("article : ", article.title);
+  aiWriteContent.value = await callChatGPTBoard(article.title);
+  console.log("aiWriteContent : ", aiWriteContent.value);
+  console.log("debugForAI 실행 종료");
+};
+
+const boardStore = useBoardStore();
+
+onMounted( async () => {
+  const boardStore = useBoardStore();
+  await boardStore.getArticle(route.params.id);
+  debugForAI();
+});
+//debugForAI();
+
 
 const wroteContent = ref("");
+const aiWriteContent = ref("wait for ai response");
+const isLoading = ref(true);
+
+
+
 const commentRequestData = ref({
   nickname: "작성자에요",
   createDate: "",
@@ -60,9 +135,12 @@ const submitComment = async () => {
                         mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id
                         euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor
                         sit nullam.-->
-                여기다가 ai 요청 복붙 사진도 복붙가능? <br>
-
-                {{ article.content }}
+                <div v-if="article.comtent = 'null content'">
+                  {{ aiWriteContent }}
+                </div>
+                <div v-else>
+                  {{ article.content }}
+                </div>
               </p>
               <!--<ul class="actions">
                       <li><a href="#" class="button big">Learn More</a></li>
@@ -73,7 +151,7 @@ const submitComment = async () => {
       <section>
       <div class="commentdiv">
           <body class="bg-gray-100">
-            <div class="container mx-0 px-8 py-8">
+            <div class="container-fluid mx-0 px-8 py-8">
               <div class="bg-white shadow-lg rounded-lg p-6">
                 <div class="mb-4">
                   <label for="comment" class="block text-gray-700 text-sm font-bold mb-2">Comment</label>

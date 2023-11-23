@@ -86,6 +86,49 @@ export const useMyPageStore = defineStore("mypage", () => {
     myRouteListInfo.value = data;
   };
 
+  const requestModifyMyInfo = async (modifiedMyInfo) => {
+    const params = {
+      email: modifiedMyInfo.email,
+      password: modifiedMyInfo.password,
+      nickname: modifiedMyInfo.nickname,
+      profile: modifiedMyInfo.profile,
+    };
+
+    const { data } = await axios.put(
+      "http://localhost:8080/user/mypage/edit",
+      params
+    );
+    console.log("requestMyRouteList 응답: ", data);
+  };
+
+  const requestSignUp = async (signUpRequestData) => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8080/user/signup",
+        signUpRequestData
+      );
+      console.log("requestSignUp 응답: ", data);
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
+
+  const requestPassword = async (email) => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8080/user/mypage/findpw",
+        email
+      );
+      console.log("requestSignUp 응답: ", data);
+      return data;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
+
   return {
     bIsLogin,
     myLoginInfo,
@@ -97,5 +140,8 @@ export const useMyPageStore = defineStore("mypage", () => {
     myLikeListInfo,
     requestMyRouteList,
     myRouteListInfo,
+    requestModifyMyInfo,
+    requestSignUp,
+    requestPassword,
   };
 });
