@@ -34,8 +34,8 @@ const isLoading = ref(true);
       </pre>
     </section>
 
-    <section class="card-container" @click="clickNewRoute">
-      <div class="card card_1">
+    <section class="card-container">
+      <div class="card card_1" @click="clickNewRoute">
         <div class="card-title">
           <p class="title">Create</p>
           <p class="title">New</p>
@@ -67,7 +67,7 @@ const isLoading = ref(true);
           <p class="title_kor">AI와 함께 계획짜기</p>
         </div>
         <div class="img-container">
-          <img src="../../../public/img/gpt.png" />
+          <img src="/img/gpt.png" />
         </div>
         <div class="arrow-container">
           <svg
@@ -161,7 +161,7 @@ section {
   /* gap: 20px; */
 }
 .card {
-  border: 1px solid rgb(80, 80, 80);
+  border: 1px solid rgb(124, 124, 124);
   width: 400px;
   height: 400px;
 }
@@ -219,9 +219,10 @@ section {
 
 .card_2 .img-container {
   position: absolute;
-  top: 70%;
-  left: 80%;
-  transform: translate(-50%, -50%);
+  bottom: 0%;
+  right: 0%;
+
+  transform: translate(30%, 30%);
   z-index: -1; /* card-title의 뒤로 이동 */
 }
 

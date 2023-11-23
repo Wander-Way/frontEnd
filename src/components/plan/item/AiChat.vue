@@ -68,7 +68,6 @@ const callChatGPT = async (message) => {
 </script>
 
 <template>
-  
   <!-- <div>
     <div v-for="(message, index) in chatMessages" :key="index">
       <div v-if="message.role === 'user'">User: {{ message.text }}</div>
@@ -87,78 +86,93 @@ const callChatGPT = async (message) => {
   <div v-if="loading">로딩 중...</div> -->
   <!-- 로딩 중일 때만 표시 -->
 
-
   <div class="container">
-  <h1>AI채팅방</h1>
-  <div class="chatbox">
-    <div class="top-bar">
-      <div class="avatar"><p>V</p></div>
-      <div class="name">WANDER WAY AI BOT</div>
-      <div class="icons">
-        <i class="fas fa-phone"></i>
-        <i class="fas fa-video"></i>
-      </div>
-      <div class="menu">
-        <div class="dots"></div>
-      </div>
-    </div>
-    <div class="middle">
-      <div class="voldemort" ref="chatContainer">
-
-
-        <div class="incoming">
-          <div class="bubble lower">안녕하세요! 여행플랜 세우기를 도와드리는 WANDER WAY BOT입니다.</div>
+    <h1>AI채팅방</h1>
+    <div class="chatbox">
+      <div class="top-bar">
+        <div class="avatar"><p>V</p></div>
+        <div class="name">WANDER WAY AI BOT</div>
+        <div class="icons">
+          <i class="fas fa-phone"></i>
+          <i class="fas fa-video"></i>
         </div>
-
-        <div v-for="(message, index) in chatMessages" :key="index">
-          <div v-if="message.role === 'user'">
-            <div class="outgoing">
-              <div class="bubble">{{ message.text }}</div>
+        <div class="menu">
+          <div class="dots"></div>
+        </div>
+      </div>
+      <div class="middle">
+        <div class="voldemort" ref="chatContainer">
+          <div class="incoming">
+            <div class="bubble lower">
+              안녕하세요! 여행플랜 세우기를 도와드리는 WANDER WAY BOT입니다.
             </div>
           </div>
-          <div v-else>
-            <div class="incoming">
-              <div class="bubble lower">{{ message.text }}</div>
+
+          <div v-for="(message, index) in chatMessages" :key="index">
+            <div v-if="message.role === 'user'">
+              <div class="outgoing">
+                <div class="bubble">{{ message.text }}</div>
+              </div>
+            </div>
+            <div v-else>
+              <div class="incoming">
+                <div class="bubble lower">{{ message.text }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="typing">
+            <div v-if="loading" class="bubble">
+              <div class="ellipsis one"></div>
+              <div class="ellipsis two"></div>
+              <div class="ellipsis three"></div>
             </div>
           </div>
         </div>
-
-
-
-        <div class="typing">
-          <div v-if="loading" class="bubble">
-            <div class="ellipsis one"></div>
-            <div class="ellipsis two"></div>
-            <div class="ellipsis three"></div>
-          </div>
-        </div>
       </div>
-    </div>
-    <div class="bottom-bar">
-      <div class="chat">
-        <input v-model="userInput"
-        @keyup.enter="sendMessage" type="text" placeholder="Type a message..." />
-        <button type="submit" @click="sendMessage"><i class="fas fa-paper-plane"></i></button>
+      <div class="bottom-bar">
+        <div class="chat">
+          <input
+            v-model="userInput"
+            @keyup.enter="sendMessage"
+            type="text"
+            placeholder="Type a message..."
+          />
+          <button type="submit" @click="sendMessage">
+            <font-awesome-icon
+              :icon="['far', 'paper-plane']"
+              style="color: #45de9c"
+            />
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-
 </template>
 
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 
-$font: 'Lato', sans-serif;
+::-webkit-scrollbar {
+  width: 10px; /* 스크롤바의 너비 */
+}
 
-$primary: #79C7C5;
-$secondary: #A1E2D9;
-$white: #F9FBFF;
+::-webkit-scrollbar-thumb {
+  height: 10px; /* 스크롤바의 길이 */
+  background: #6f74b4; /* 스크롤바의 색상 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(75, 76, 80, 0.1); /*스크롤바 뒷 배경 색상*/
+}
+
+$font: "Lato", sans-serif;
+
+$primary: #79c7c5;
+$secondary: #a1e2d9;
+$white: #f9fbff;
 $dark: #777777;
-
-
-
 
 .container {
   position: relative;
@@ -169,9 +183,8 @@ $dark: #777777;
   border-radius: 8px;
 }
 
-
 .chatbox {
-  position: absolute; 
+  position: absolute;
   // left: 35%;
   height: 100%;
   width: 100%;
@@ -205,7 +218,7 @@ $dark: #777777;
   top: 22px;
   text-transform: uppercase;
   color: $dark;
-  font-size: .8em;
+  font-size: 0.8em;
   letter-spacing: 2px;
   font-weight: 500;
   left: 60px;
@@ -220,7 +233,7 @@ $dark: #777777;
   cursor: pointer;
   &:hover {
     transform: scale(1.1);
-    transition: all .3s ease-in;
+    transition: all 0.3s ease-in;
   }
 }
 
@@ -236,7 +249,7 @@ $dark: #777777;
     opacity: 0.8;
     &:hover {
       transform: scale(1.1);
-      transition: all .3s ease-in;
+      transition: all 0.3s ease-in;
     }
   }
 }
@@ -259,10 +272,11 @@ $dark: #777777;
 }
 
 .incoming {
-  position: absolute;
-  width: 50%;
+  // position: absolute;
+  width: 80%;
   height: 100%;
   padding: 20px;
+  word-wrap: break-word; /* 긴 단어가 부모 너비를 초과할 때 줄 바꿈 */
   .bubble {
     background: lighten($dark, 23%);
   }
@@ -270,14 +284,13 @@ $dark: #777777;
 
 .typing {
   position: absolute;
-  top: 67%;
-  left: 20px;
+  top: 85%;
+  left: 25px;
   .bubble {
     background: lighten($dark, 45%);
     padding: 8px 13px 9px 13px;
   }
 }
-
 
 .ellipsis {
   width: 5px;
@@ -309,18 +322,17 @@ $dark: #777777;
 }
 
 .outgoing {
-  position: absolute;
-  padding: 20px;
-  right: 0;
-  top: 15%;
-  width: 50%;
-  height: 100%;
+  position: relative;
+  // padding: 20px;
+  left: 15%;
+  // top: 15%;
+  width: 80%;
+  // height: 100%;
   .bubble {
     background: $primary;
     float: right;
   }
 }
-
 
 .bottom-bar {
   position: absolute;
@@ -331,7 +343,6 @@ $dark: #777777;
   border-radius: 0 0 10px 10px;
 }
 
-
 input {
   padding: 7px;
   width: 74%;
@@ -341,7 +352,6 @@ input {
   top: 13px;
   background: $white;
   color: $primary;
-
 }
 
 input::placeholder {
@@ -358,14 +368,14 @@ button {
   border: 0;
   font-size: 1em;
   color: $secondary;
-  top:  19px;
+  top: 19px;
   opacity: 0.8;
   right: 17px;
   cursor: pointer;
   outline: 0;
   &:hover {
     transform: scale(1.1);
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     color: $primary;
   }
 }
@@ -377,9 +387,18 @@ button {
 }
 
 @keyframes bounce {
-  30% { transform: translateY(-2px); }
-  60% { transform: translateY(0px); }
-  80% { transform: translateY(2px); }
-  100% { transform: translateY(0px); opacity: 0.5;  }
+  30% {
+    transform: translateY(-2px);
+  }
+  60% {
+    transform: translateY(0px);
+  }
+  80% {
+    transform: translateY(2px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 0.5;
+  }
 }
 </style>

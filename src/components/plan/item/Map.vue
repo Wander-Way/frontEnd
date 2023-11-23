@@ -3,7 +3,7 @@ import { ref, computed, onMounted } from "vue";
 import axios from "axios";
 import { planStore } from "@/stores/plan";
 import EventBus from "@/util/EventBus";
-
+defineProps(["inputContainer"]);
 const searchKeyword = ref("용산구 맛집");
 const map = ref(null);
 const marker = ref(null);
@@ -235,7 +235,10 @@ EventBus.on("setMapByAnotherRoute", (plans) => {
     <div class="left-section">
       <div class="map-container">
         <!-- 검색창-->
-        <div class="input-container">
+        <div
+          class="input-container"
+          :style="{ display: inputContainer ? 'none' : 'block' }"
+        >
           <font-awesome-icon
             :icon="['fas', 'magnifying-glass']"
             class="search-icon"
@@ -265,7 +268,7 @@ EventBus.on("setMapByAnotherRoute", (plans) => {
             <div class="card-content">
               <p>{{ place.name }}</p>
               <p>
-                {{ place.bldAddr }}<br>
+                {{ place.bldAddr }}<br />
                 {{ place.tel }}
               </p>
             </div>
@@ -324,7 +327,7 @@ EventBus.on("setMapByAnotherRoute", (plans) => {
   position: relative;
   display: flex;
   justify-content: center;
-  width: 30%;
+  width: 200px;
 }
 
 .card img {
@@ -407,7 +410,6 @@ EventBus.on("setMapByAnotherRoute", (plans) => {
   font-family: "Abhaya Libre", serif;
   transition: background-color 0.3s ease;
 }
-
 
 #btn_select:hover {
   background-color: #b5afff;
