@@ -8,14 +8,17 @@ const myPageStore = useMyPageStore();
 const router = useRouter();
 const myWishListLocal = ref({}); //여기에 저장되구요
 
-const requestMypage = async () => {
+const requestMyLikeList = async () => {
   await myPageStore.requestMyLikeList();
   const { myLikeListInfo } = storeToRefs(myPageStore);
   myWishListLocal.value = myLikeListInfo.value;
   console.log(myWishListLocal.value);
 };
 
-onMounted(requestMypage);
+onMounted(() => {
+  requestMyLikeList();
+
+});
 </script>
 
 <template>
