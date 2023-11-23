@@ -15,6 +15,18 @@ const callChatGPTBoard = async (message) => {
   const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
   const apiUrl = "https://api.openai.com/v1/chat/completions";
 
+  const catURL = ref("https://cataas.com/cat?size:300&");
+  const catURLArr = ref(["https://cataas.com/cat?size:301&",
+  "https://cataas.com/cat?size:302&",
+  "https://cataas.com/cat?size:303&",
+  "https://cataas.com/cat?size:304&",
+  "https://cataas.com/cat?size:305&",
+  "https://cataas.com/cat?size:306&",
+  "https://cataas.com/cat?size:307&",
+  "https://cataas.com/cat?size:308&",
+  "https://cataas.com/cat?size:309&",
+  "https://cataas.com/cat?size:310&",]);
+
   console.log("callChatGPTBoard 실행");
   console.log("message : ", message);
 
@@ -124,9 +136,9 @@ const submitComment = async () => {
           <section id="banner">
             <div class="content">
               <header>
-                <h1>
+                <h2>
                   {{ article.title }}<br />
-                </h1>
+                </h2>
               </header>
               <p>
                 <!--Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin
@@ -166,7 +178,15 @@ const submitComment = async () => {
               <div class="space-y-4">
                 <div v-for="(comment, index) in article.hotPlaceCommentDtoList" :key="index">
                   <div class="flex items-center bg-gray-50 p-4 rounded-lg">
-                    <div class="w-16 h-16 bg-gray-300 rounded-full mr-4"></div>
+                    <div class="w-16 h-16 bg-gray-300 rounded-full mr-4 overflow-hidden">
+                          <img
+                          class="w-24 h-24 rounded-full"
+                          src="https://cataas.com/cat?size:300"
+                          alt="Profile Picture"
+                        />
+                      <!-- <img src="your-image-url" alt="description" class="object-cover w-full h-full"> -->
+                    </div>
+                    <!-- <div class="w-16 h-16 bg-gray-300 rounded-full mr-4"></div> -->
                     <div class="flex-1">
                         <div class="text-sm font-semibold">{{ comment.content }}</div>
                         <div class="text-xs text-gray-600">{{ comment.nickname }} / {{ comment.createDate }}</div>
@@ -258,6 +278,19 @@ const submitComment = async () => {
 
 <style scoped>
 @import url("@/views/HotplaceView/editorial/assets/css/main2.css");
+
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;800&display=swap");
+@font-face {
+  font-family: "notosans-bold";
+  src: url("/font/NotoSansKR-Bold.ttf");
+}
+
+@font-face {
+  font-family: "notosans-regular";
+  src: url("/font/NotoSansKR-Regular.ttf");
+}
+
+
 
 .commentdiv {
 }
