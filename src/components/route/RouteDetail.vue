@@ -10,12 +10,10 @@ onMounted(() => {
 const route = useRoute();
 const store = routeStore();
 const detailData = ref({});
-const setRouteDetail = async() => {
+const setRouteDetail = async () => {
   const id = route.params.id;
   detailData.value = await store.getRouteDetail(id);
-}
-
-
+};
 </script>
 
 <template>
@@ -30,7 +28,7 @@ const setRouteDetail = async() => {
         <li>{{ data }}</li>
       </ul>
       <div>"눌럿나 ?" : {{ detailData._like }}</div>
-      <like :like="detailData._like"  @updateLike="updateLike"></like>
+      <like :like="detailData.like" @updateLike="updateLike"></like>
       <div v-for="(items, key) in detailData.plan" :key="key">
         <!-- 'items' represents the array at each index in the 'plan' object -->
         <h3>DAY {{ key }}</h3>

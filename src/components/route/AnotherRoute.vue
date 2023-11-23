@@ -3,7 +3,24 @@ import { ref, computed, onMounted } from "vue";
 import { routeStore } from "@/stores/route";
 import { useRoute, useRouter, RouterLink } from "vue-router";
 import like from "./item/Like.vue";
+import Modal from "./item/Modal.vue";
+const isModalOpen = ref(false);
+const modalContent = ref({});
 
+const openModal = (route) => {
+  isModalOpen.value = true;
+  modalContent.value = route;
+};
+
+const closeModalOutside = (event) => {
+  if (event.target.classList.contains("modal-container")) {
+    closeModal();
+  }
+};
+
+const closeModal = () => {
+  isModalOpen.value = false;
+};
 const isLoading = ref(true);
 
 onMounted(() => {
@@ -108,9 +125,10 @@ const searchRoute = async () => {
         <div class="card-container">
           <div
             class="card"
+            @click="openModal(route)"
             v-for="route in resultRoute"
-            @click="goToRouteDetail(route.route_id)"
           >
+            <!-- @click="goToRouteDetail(route.route_id)" -->
             <div class="card-image">
               <div>{{ route.perios }}</div>
               <img src="/img/cardImg.jpeg" alt="Card Image" />
@@ -149,6 +167,17 @@ const searchRoute = async () => {
         </div>
       </section>
     </section>
+    <Modal
+      v-if="isModalOpen"
+      class="modal-container"
+      @click="closeModalOutside"
+      :route_id="modalContent.route_id"
+    >
+      <!-- 모달 내용 -->
+      <div>{{ modalContent.route_id }}</div>
+      <!-- <div>{{ modalContent.description }}</div> -->
+      <!-- 다른 카드 정보 추가 -->
+    </Modal>
   </div>
 </template>
 
@@ -404,5 +433,23 @@ li {
 
 ::-webkit-scrollbar-track {
   background: rgba(75, 76, 80, 0.1); /*스크롤바 뒷 배경 색상*/
+}
+
+.card:hover {
+  transform: scale(1.05); /* 1.05 배 크기로 확대 (원하는 크기로 조절) */
+  transition: transform 0.3s ease; /* 0.3초 동안 애니메이션 적용, ease 효과 사용 (필요에 따라 조절) */
+  cursor: pointer; /* 호버 시 마우스 커서를 손가락 모양으로 변경 */
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
