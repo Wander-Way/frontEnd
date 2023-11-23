@@ -17,22 +17,32 @@ const goMain = () => {
     ></label>
     <ul class="menu">
       <li>
-        <router-link :to="{ name: 'planYourRoute' }">여행계획</router-link>
+        <router-link :to="{ name: 'planYourRoute' }" style="font-family: 'notosans-bold'">여행계획</router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'anotherRoute' }">여행루트</router-link>
+        <router-link :to="{ name: 'anotherRoute' }" style="font-family: 'notosans-bold'">여행루트</router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'hotplace' }">핫플정보</router-link>
+        <router-link :to="{ name: 'hotplace' }" style="font-family: 'notosans-bold'">핫플정보</router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'myPage' }">로그인/내정보</router-link>
+        <router-link :to="{ name: 'myPage' }" style="font-family: 'notosans-bold'">로그인/내정보</router-link>
       </li>
     </ul>
   </header>
 </template>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;800&display=swap");
+@font-face {
+  font-family: "notosans-bold";
+  src: url("/font/NotoSansKR-Bold.ttf");
+}
+
+@font-face {
+  font-family: "notosans-regular";
+  src: url("/font/NotoSansKR-Regular.ttf");
+}
 body {
   margin: 0;
   font-family: Helvetica, sans-serif;
@@ -40,7 +50,12 @@ body {
 }
 
 a {
+  font-family: "Abhaya Libre";
   color: #000;
+}
+
+li {
+  font-family: "notosans-bold";
 }
 
 /* header */
