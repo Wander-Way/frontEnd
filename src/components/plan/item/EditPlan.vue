@@ -47,8 +47,10 @@ const onDragEnd = (index, event) => {
               <div class="card-content">
                 <p>{{ place.name }}</p>
                 <p>
-                  <font-awesome-icon :icon="['fas', 'location-dot']" size="sm" style="color: #302f6f;" />  {{ place.bldAddr }}<br>
-                  <font-awesome-icon :icon="['fas', 'phone']" size="sm" style="color: #302f6f;" /> {{ place.tel }}
+                  <font-awesome-icon :icon="['fas', 'location-dot']" size="sm" style="color: #302f6f;"  />{{ place.bldAddr }}
+                  <span v-if="place.bldAddr" style="margin-left: 1px;"></span>
+                  <span v-else style="margin-left: 1px;">{{ place.detailAddress }}</span>
+                  <font-awesome-icon :icon="['fas', 'phone']" size="sm" v-if="place.tel" style="color: #302f6f;" /> {{ place.tel }}
                 </p>
               </div>
               <div @click="removePlace(index, orderIndex)" class="icon">
