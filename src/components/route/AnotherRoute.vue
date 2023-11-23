@@ -31,6 +31,8 @@ onMounted(() => {
 });
 
 const resultRoute = ref([]); //검색결과 데이터 저장
+const totalCnt = ref();
+const resultObj = ref();
 
 const store = routeStore();
 const setRecentRoute = async () => {
@@ -64,7 +66,9 @@ const keywords = computed(() => allKeywords.value);
 //검색
 const page = ref(1);
 const searchRoute = async () => {
-  resultRoute.value = await store.searchRoute(allKeywords.value, page.value);
+  resultObj.value = await store.searchRoute(allKeywords.value, page.value);
+  totalCnt.value = resultObj.value.totalCnt;
+  resultRoute.value = resultObj.value.routes;
 };
 </script>
 
@@ -121,7 +125,7 @@ const searchRoute = async () => {
       </section>
 
       <section class="result-container">
-        <h2>검색결과</h2>
+        <h2>검색결과 {{ totalCnt }}</h2>
         <div class="card-container">
           <div
             class="card"

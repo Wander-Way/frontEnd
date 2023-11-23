@@ -28,43 +28,48 @@ const setRouteDetail = async () => {
 </script>
 
 <template>
-  <div class="modal">
+  <div class="modal" >
     <div class="modal-content">
       <div>
-        <h3>여행루트의 상세정보를 조회하자!</h3>
         <div class="route-info">
-          <div><strong>여행 ID:</strong> {{ detailData.planId }}</div>
-          <div><strong>닉네임:</strong> {{ detailData.nickName }}</div>
-          <div><strong>장소:</strong> {{ detailData.location }}</div>
-          <div><strong>기간:</strong> {{ detailData.period }}</div>
-          <div><strong>설명:</strong> {{ detailData.description }}</div>
+          <div class="bold">{{ detailData.title }} <span style="font-family: 'notosans-bold'; font-size: 20px;">@{{ detailData.nickName }}</span></div> 
+          
+          <hr>
+          <div style="font-family: 'notosans-regular'; font-size: 20px;">{{ detailData.description }}</div>
+          
           <div>
-            <strong>태그:</strong>
             <ul>
-              <li v-for="data in detailData.tag" :key="data">{{ data }}</li>
+              <li v-for="data in detailData.tag" :key="data">#{{ data }}</li>
             </ul>
           </div>
-          <div><strong>좋아요:</strong> {{ detailData.like }}</div>
-          <like
-            :like="detailData.like"
+          <div style="font-family: 'notosans-regular'; font-size: 20px;"><font-awesome-icon
+              size="xs"
+              :icon="['fas', 'location-dot']"
+            /> {{ detailData.location }}<span> in </span>{{ detailData.period }}<span>Days</span></div>
+
+          <div class="heart">          
+            <like
+            :like="detailData._like"
             :routeId="detailData.planId"
             @updateLike="updateLike"
-          ></like>
+          ></like></div>
+
         </div>
 
         <div class="travel-plan">
-          <h3>여행 계획</h3>
           <div v-for="(items, key) in detailData.plan" :key="key">
-            <h4>DAY {{ key }}</h4>
-            <div class="plan-item" v-for="item in items" :key="item.tmapId">
-              <div><strong>장소:</strong> {{ item.name }}</div>
-              <div><strong>상세 주소:</strong> {{ item.detailAddress }}</div>
+            <h3 class="bold2">📌 DAY {{ key }}</h3>
+            <div class="card-container" >
+            <div class="card" v-for="(item, index) in items" :key="item.tmapId">
+              <font-awesome-icon :icon="['fas', (index+1).toString()]" style="color: #584ac4;" />
+              <hr >
+              <div style="font-family: 'notosans-bold'; font-size: 15px;"> {{ item.name }}</div>
+              <div style="font-family: 'notosans-regular'; font-size: 13px;"> {{ item.detailAddress }}</div>
               <!-- Add more properties as needed -->
-            </div>
+            </div></div>
           </div>
         </div>
       </div>
-      <slot></slot>
     </div>
 
     <button @click="$emit('close')">닫기</button>
@@ -72,11 +77,83 @@ const setRouteDetail = async () => {
 </template>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;800&display=swap");
+@font-face {
+  font-family: "notosans-bold";
+  src: url("/font/NotoSansKR-Bold.ttf");
+}
+
+@font-face {
+  font-family: "notosans-regular";
+  src: url("/font/NotoSansKR-Regular.ttf");
+}
+
+@font-face {
+  font-family: "notosans-thin";
+  src: url("/font/NotoSansKR-Thin.ttf");
+}
+
+.heart{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+hr {
+  margin-bottom: 5px;
+}
+ul{
+  margin : 20px 0px;
+}
+li {
+  margin : 0px;
+  display: inline-block; 
+  /* margin-right: 5px; */
+  background-color: #b9aee6;
+  color: white;
+  padding: 5px 13px;
+  /* margin-right: 5px; */
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "notosans-bold";
+  font-size : 13px;
+}
+.bold {
+  font-family: "notosans-bold";
+  font-size : 30px;
+}
+.bold2 {
+  font-family: "Abhaya Libre";
+  font-size : 27px;
+  margin-top: 10px;
+}
+.card-container {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  margin: 0px 20px;
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap; /* 또는 주석 처리: flex-wrap: nowrap; */
+  gap: 10px;
+  /* justify-content: center; */
+}
+
+.card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 150px;
+  height: 120px;
+  overflow: hidden;
+}
 .modal {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100%; 
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -85,21 +162,20 @@ const setRouteDetail = async () => {
 }
 
 .modal-content {
+  width: 800px;
+  max-height: 500px;
+  overflow: auto;
   background-color: #fff;
-  padding: 20px;
+  padding: 60px;
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 
 button {
   margin-top: 10px;
 }
 
-.modal-content {
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
 .route-info {
   margin-bottom: 20px;
@@ -134,4 +210,20 @@ button {
 .plan-item div {
   margin-bottom: 5px;
 }
+
+
+::-webkit-scrollbar {
+  width: 10px; /* 스크롤바의 너비 */
+}
+
+::-webkit-scrollbar-thumb {
+  height: 10px; /* 스크롤바의 길이 */
+  background: #6f74b4; /* 스크롤바의 색상 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(75, 76, 80, 0.1); /*스크롤바 뒷 배경 색상*/
+}
+
 </style>
