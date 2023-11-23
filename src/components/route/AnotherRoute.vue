@@ -130,12 +130,12 @@ const searchRoute = async () => {
           <div
             class="card"
             @click="openModal(route)"
-            v-for="route in resultRoute"
+            v-for="(route, index) in resultRoute"
           >
             <!-- @click="goToRouteDetail(route.route_id)" -->
             <div class="card-image">
               <div>{{ route.perios }}</div>
-              <img src="/img/cardImg.jpeg" alt="Card Image" />
+              <img :src="`/img/thumbImg/thumbImg_${index + 1}.jpg`" alt="Card Image" />
               <div class="location-info">
                 <font-awesome-icon
                   :icon="['fas', 'map-location-dot']"

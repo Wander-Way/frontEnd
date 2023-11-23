@@ -257,8 +257,8 @@ EventBus.on("setMapByAnotherRoute", (plans) => {
         <div id="map_div" class="map_wrap"></div>
         <!-- 카드 그룹 -->
         <div class="cards-container">
-          <div v-for="place in detailInfo" class="card">
-            <img src="/img/cardImg.jpeg" alt="Card Image" />
+          <div v-for="(place, index) in detailInfo" class="card">
+            <img :src="`/img/cardImg/cardImg_${index + 1}.jpg`" alt="Card Image" />
             <div @click="addSelectedPlace(place)" class="icon">
               <font-awesome-icon
                 :icon="['fas', 'circle-plus']"

@@ -43,12 +43,12 @@ const onDragEnd = (index, event) => {
         >
           <li class="card-container" v-for="(place, orderIndex) in group" :key="place.id">
             <div class="card">
-              <img src="/img/cardImg.jpeg" alt="Card Image" />
+              <img :src="`/img/cardImg/cardImg_${(index*5)+orderIndex+1 }.jpg`" alt="Card Image" />
               <div class="card-content">
                 <p>{{ place.name }}</p>
                 <p>
                   <font-awesome-icon :icon="['fas', 'location-dot']" size="sm" style="color: #302f6f;"  />{{ place.bldAddr }}
-                  <span v-if="place.bldAddr" style="margin-left: 1px;"></span>
+                  <span v-if="place.bldAddr" style="margin-left: 10px;"></span>
                   <span v-else style="margin-left: 1px;">{{ place.detailAddress }}</span>
                   <font-awesome-icon :icon="['fas', 'phone']" size="sm" v-if="place.tel" style="color: #302f6f;" /> {{ place.tel }}
                 </p>
