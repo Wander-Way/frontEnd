@@ -35,12 +35,12 @@ import Buttons from "./item/Buttons.vue";
 @import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;800&display=swap");
 @font-face {
   font-family: "notosans-bold";
-  src: url("../../../public/font/NotoSansKR-Bold.ttf");
+  src: url("/font/NotoSansKR-Bold.ttf");
 }
 
 @font-face {
   font-family: "notosans-regular";
-  src: url("../../../public/font/NotoSansKR-Regular.ttf");
+  src: url("/font/NotoSansKR-Regular.ttf");
 }
 
 #box {

@@ -3,19 +3,19 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const pushSave = () => {
-  router.push({name:"planInput"});
-}
+  router.push({ name: "planInput" });
+};
 </script>
 
 <template>
   <div>
     <!-- <button>최적경로</button> -->
-    <button @click="pushSave">SAVE</button>
+    <button @click="pushSave">NEXT</button>
   </div>
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;800&display=swap");
 @font-face {
   font-family: "notosans-bold";
@@ -37,7 +37,6 @@ button {
   cursor: pointer; /* 커서를 손가락으로 변경 */
   border-radius: 7px; /* 모서리를 둥글게 만듦 */
   transition: background-color 0.3s ease; /* 배경색 전환에 애니메이션 추가 */
-  
 }
 button:hover {
   background-color: #8286bb; /* 호버 시 핑크색으로 변경 */

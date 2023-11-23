@@ -23,23 +23,23 @@ AI의 도움을 받아 여행지를 추가해보세요.
 원하는 지역의 관광지를 추천받아보시는건 어떨까요?
       </pre>
     </div>
-    
-      <div class="container">
-        <section class="map-section">
-          <Map></Map>
-        </section>
 
-        <section class="editplan-section">
-            <label @click="toggleView">
-              <input role="switch" type="checkbox" v-model="showAiChat"/>
-            </label>
-          <div v-show="showAiChat"><AiChat></AiChat></div>
-          <div v-show="!showAiChat"><EditPlan></EditPlan></div>
-          <!-- <div><EditPlan></EditPlan></div> -->
-        </section>
-      </div>
+    <div class="container">
+      <section class="map-section">
+        <Map></Map>
+      </section>
 
-      <div class="buttons">
+      <section class="editplan-section">
+        <label @click="toggleView">
+          <input role="switch" type="checkbox" v-model="showAiChat" />
+        </label>
+        <div v-show="showAiChat"><AiChat></AiChat></div>
+        <div v-show="!showAiChat"><EditPlan></EditPlan></div>
+        <!-- <div><EditPlan></EditPlan></div> -->
+      </section>
+    </div>
+
+    <div class="buttons">
       <Buttons></Buttons>
     </div>
   </div>
@@ -49,12 +49,12 @@ AI의 도움을 받아 여행지를 추가해보세요.
 @import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;800&display=swap");
 @font-face {
   font-family: "notosans-bold";
-  src: url("../../../public/font/NotoSansKR-Bold.ttf");
+  src: url("/font/NotoSansKR-Bold.ttf");
 }
 
 @font-face {
   font-family: "notosans-regular";
-  src: url("../../../public/font/NotoSansKR-Regular.ttf");
+  src: url("/font/NotoSansKR-Regular.ttf");
 }
 label {
   display: inline-flex;
@@ -175,7 +175,6 @@ hr {
   /* margin: 0px 40px; 가운데 정렬 및 위아래 여백 설정 (선택사항) */
 }
 
-
 .container {
   /* border: 1px solid rgb(182, 66, 66); */
   display: flex;
@@ -196,4 +195,3 @@ hr {
   justify-content: flex-end;
 }
 </style>
- 
