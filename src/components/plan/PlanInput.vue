@@ -136,17 +136,6 @@ const locations = [
   font-family: "notosans-thin";
   src: url("/font/NotoSansKR-Thin.ttf");
 }
-@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;800&display=swap");
-@font-face {
-  font-family: "notosans-bold";
-  src: url("/font/NotoSansKR-Bold.ttf");
-}
-
-@font-face {
-  font-family: "notosans-regular";
-  src: url("/font/NotoSansKR-Regular.ttf");
-}
 
 button {
   font-family: "Abhaya Libre", serif;
