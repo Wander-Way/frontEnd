@@ -34,10 +34,15 @@ const login = async () => {
     alert("로그인 실패");
   }
 };
-
 const signUpButtonClick = () => {
   router.push({ name: "myPageSignUp" });
 };
+
+const findPassword = (email) => {
+  const result = myPageStore.requestPassword(email);
+  console.log("result : ", result);
+};
+//findPassword('ssafytest@gmail.com');
 </script>
 
 <template>

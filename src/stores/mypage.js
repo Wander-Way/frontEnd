@@ -115,6 +115,20 @@ export const useMyPageStore = defineStore("mypage", () => {
     }
   };
 
+  const requestPassword = async (email) => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8080/user/mypage/findpw",
+        email
+      );
+      console.log("requestSignUp 응답: ", data);
+      return data;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
+
   return {
     bIsLogin,
     myLoginInfo,
@@ -128,5 +142,6 @@ export const useMyPageStore = defineStore("mypage", () => {
     myRouteListInfo,
     requestModifyMyInfo,
     requestSignUp,
+    requestPassword,
   };
 });
